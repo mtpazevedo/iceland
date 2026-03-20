@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: #1e3a1e;
+    @apply text-cream font-body;
+    margin: 0;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-ash; }
+  ::-webkit-scrollbar-thumb { @apply bg-stone rounded-full; }
+}
+
+@layer components {
+  .section-label {
+    @apply text-[13px] tracking-[0.3em] uppercase text-mist font-body font-medium;
+  }
+
+  .display-title {
+    @apply font-display font-light text-cream leading-tight;
+  }
+
+  .card-glass {
+    @apply bg-ash/60 backdrop-blur-sm border border-stone/30 rounded-xl;
+  }
+
+  .btn-primary {
+    @apply bg-glacier text-obsidian font-body font-medium text-sm px-6 py-2.5 rounded-full
+           hover:bg-glacier-light transition-colors duration-200;
+  }
+
+  .btn-ghost {
+    @apply border border-stone/50 text-cream/70 font-body font-medium text-sm px-6 py-2.5 rounded-full
+           hover:border-mist hover:text-cream transition-colors duration-200;
+  }
+
+  .nav-link {
+    @apply text-xs tracking-widest uppercase text-cream/50 hover:text-cream transition-colors duration-200 font-body;
+  }
+}
+
+/* Grain texture overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Hero image parallax base */
+.hero-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
