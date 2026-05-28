@@ -65,12 +65,12 @@ Custom colors: `obsidian`, `ash`, `charcoal`, `stone`, `mist`, `glacier`, `glaci
 Custom utilities: `card-glass`, `section-label`, `display-title`, `btn-primary`, `btn-ghost`, `nav-link`
 Grain overlay: add className `grain` to any wrapper for the film grain CSS effect.
 
-### Participant dining logic
+### Participant personalities (current)
 
-- Tereza: fine dining only
-- Biba: casual/cool atmosphere
-- Marcella: non-drinker — mocktail options matter
-- Krysse: flexible (both)
-- Flavia: casual
+- **Tereza**: photos + good food. NOT Michelin-driven. Cares about scenes that look + taste good, not stars.
+- **Marcella**: fun + energetic, non-drinker, stylish. Mocktail options matter. Not a coffee addict — she's the energy of the group.
+- **Krysse**: the art girl — galleries by day, speakeasy/cocktails by night. Easy-going partier.
+- **Biba**: adventurous + stylish. Up for any hike, perfect outfit by golden hour.
+- **Flavia**: history, music, curious + cool. Will read every museum panel.
 
-Each itinerary day includes 2 meals: one `fine` + one `casual` or one `quick` for lunch. Restaurant notes account for Marcella's non-drinking status.
+Restaurant notes should keep Marcella's non-drinking covered (mocktail program). NO group-wide "fine dining" tilt — keep most meals casual + cool, with one `fine` option per dinner where it fits naturally.

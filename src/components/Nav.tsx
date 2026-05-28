@@ -5,8 +5,9 @@ import { Menu, X } from 'lucide-react'
 const links = [
   { to: '/', label: 'Home' },
   { to: '/itinerary', label: 'Itinerary' },
+  { to: '/simple', label: 'Quick Sheet' },
+  { to: '/map', label: 'Map' },
   { to: '/crew', label: 'The Crew' },
-  { to: '/polls', label: 'Polls' },
   { to: '/practical', label: 'Practical' },
   { to: '/playlist', label: 'Playlist' },
 ]
@@ -20,7 +21,7 @@ export default function Nav() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${isHome ? 'bg-transparent' : 'bg-obsidian/90 backdrop-blur-md border-b border-stone/20'}`}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <NavLink to="/" className="font-display text-lg text-cream/80 hover:text-cream transition-colors italic">
-          Ísland '26
+          Iceland '26
         </NavLink>
 
         {/* Desktop */}

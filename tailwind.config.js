@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         obsidian: '#1a1a1a',
-        forest: '#1e3a1e',
+        forest: '#6E4F66',
         ash: '#1c1c1c',
         charcoal: '#2a2a2a',
         stone: '#3d3d3d',

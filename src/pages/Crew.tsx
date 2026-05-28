@@ -25,7 +25,7 @@ export default function Crew() {
                 className="w-full h-full object-cover object-center scale-[1.35]" />
             </div>
             <h3 className="font-display text-2xl text-cream mb-1">{person.name}</h3>
-            <p className="text-cream/40 text-sm italic mb-4">"{person.tagline}"</p>
+            <p className="text-cream/40 text-sm italic mb-4">{person.tagline}</p>
             <div className="flex flex-wrap gap-1.5 mb-4">
               {person.vibe.map(v => (
                 <span key={v} className="text-xs px-2.5 py-1 rounded-full border font-body"
@@ -57,10 +57,10 @@ export default function Crew() {
       <div className="mb-24 text-center">
         <div className="card-glass p-8 max-w-2xl mx-auto">
           <p className="font-display text-xl text-cream/70 italic leading-relaxed">
-            "We travel not to escape life, but for life not to escape us.
-            And it's always better with the right people."
+            "The real voyage of discovery consists not in seeking new landscapes,
+            but in having new eyes."
           </p>
-          <p className="section-label mt-4">The golden rule</p>
+          <p className="section-label mt-4">— Marcel Proust</p>
         </div>
       </div>
 

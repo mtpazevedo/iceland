@@ -36,7 +36,7 @@ export default function Playlist() {
 
       {/* Spotify Embed Placeholder */}
       <div className="card-glass p-8 mb-8 text-center">
-        <h3 className="font-display text-2xl text-cream mb-6">Ísland '26 — The Playlist</h3>
+        <h3 className="font-display text-2xl text-cream mb-6">Iceland '26 — The Playlist</h3>
 
         <iframe
           style={{ borderRadius: '12px' }}

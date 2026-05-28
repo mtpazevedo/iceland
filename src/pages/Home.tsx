@@ -1,12 +1,33 @@
 import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, MapPin } from 'lucide-react'
+import { ArrowRight, MapPin, Download, ExternalLink } from 'lucide-react'
 import Countdown from '../components/Countdown'
 import Weather from '../components/Weather'
 import { photos } from '../data/photos'
 import { funFacts, resources, icelandicPhrases } from '../data/resources'
 
 const IcelandMap = lazy(() => import('../components/IcelandMap'))
+
+// Google Maps "directions" URL stitching the trip's main waypoints in driving order.
+// Opens in the official Google Maps app/site with multi-stop turn-by-turn.
+const GOOGLE_MAPS_ROUTE_URL =
+  'https://www.google.com/maps/dir/' + [
+    'B2+Apartments,+Brautarholt+2,+Reykjavík',
+    'Þingvellir+National+Park',
+    'Geysir,+Iceland',
+    'Gullfoss',
+    'Seljalandsfoss',
+    'Skógafoss',
+    'Reynisfjara',
+    'Hotel+Vík+í+Mýrdal',
+    'Fjaðrárgljúfur',
+    'Reykjavík',
+    'Settlement+Center+Borgarnes',
+    'Búðakirkja',
+    'Kirkjufell',
+    'Reykjavík',
+    'Keflavík+Airport',
+  ].join('/')
 
 export default function Home() {
   return (
@@ -16,17 +37,18 @@ export default function Home() {
       <section
         className="relative min-h-screen flex flex-col items-center justify-center text-center px-6"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(30,58,30,0.3) 0%, rgba(30,58,30,0.6) 60%, rgba(30,58,30,1) 100%), url(${photos.hero})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(20,12,30,0.6) 0%, rgba(40,22,60,0.4) 30%, rgba(110,79,102,0.75) 78%, rgba(110,79,102,1) 100%), url(${photos.hero})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <div className="animate-fade-in">
+        <div className="animate-fade-in pb-32 md:pb-28">
           <p className="section-label mb-6 tracking-[0.5em]">June 7 — 14 · 2026</p>
-          <h1 className="display-title text-7xl md:text-9xl lg:text-[11rem] mb-4">Ísland</h1>
-          <p className="font-display italic text-2xl md:text-3xl text-cream/60 mb-12">
-            Five girls. One island. Zero excuses.
-          </p>
+          <h1 className="display-title text-7xl md:text-9xl lg:text-[11rem] mb-4">Iceland</h1>
+          <div className="font-display italic text-cream/60 mb-12 leading-tight">
+            <p className="section-label not-italic mb-2 tracking-[0.4em] text-cream/40">— The —</p>
+            <p className="text-2xl md:text-3xl">Girls Scenic Trip</p>
+          </div>
           <div className="mb-12">
             <p className="section-label mb-4">Departing in</p>
             <Countdown />
@@ -35,12 +57,12 @@ export default function Home() {
             <Link to="/itinerary" className="btn-primary flex items-center gap-2 justify-center">
               See the plan <ArrowRight size={16} />
             </Link>
-            <Link to="/polls" className="btn-ghost">Vote on stuff</Link>
+            <Link to="/practical" className="btn-ghost">What to pack</Link>
           </div>
         </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-cream/30 animate-pulse-slow">
-          <span className="section-label">scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-cream/30 to-transparent" />
+        <div className="hidden md:flex absolute bottom-4 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 text-cream/30 animate-pulse-slow pointer-events-none">
+          <span className="section-label text-[10px]">scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-cream/30 to-transparent" />
         </div>
       </section>
 
@@ -64,7 +86,7 @@ export default function Home() {
           {[
             { label: 'Days', value: '8', sub: 'June 7–14' },
             { label: 'Crew', value: '5', sub: 'Krysse, Marcella, Flavia, Biba, Tereza' },
-            { label: 'Overnight stops', value: '2', sub: 'South Coast region' },
+            { label: 'Overnight stops', value: '1', sub: '1 night in Vík (rest are in Reyk)' },
             { label: 'Daylight', value: '~23h', sub: 'Midnight sun season' },
           ].map(f => (
             <div key={f.label} className="card-glass p-6 text-center">
@@ -119,6 +141,7 @@ export default function Home() {
             Click any marker to see what we're doing there. Numbers show which day.
           </p>
         </div>
+
         <Suspense fallback={
           <div className="card-glass h-[500px] rounded-2xl flex items-center justify-center text-cream/30 text-sm">
             Loading map…
@@ -126,15 +149,50 @@ export default function Home() {
         }>
           <IcelandMap />
         </Suspense>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+
+        {/* Map CTAs — Google Maps + KML download */}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={GOOGLE_MAPS_ROUTE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2"
+          >
+            <ExternalLink size={14} /> Open route in Google Maps
+          </a>
+          <Link
+            to="/map"
+            className="btn-ghost inline-flex items-center gap-2"
+          >
+            <MapPin size={14} /> Searchable spots map
+          </Link>
+          <Link
+            to="/map"
+            state={{ download: true }}
+            className="btn-ghost inline-flex items-center gap-2"
+          >
+            <Download size={14} /> Download KML (Google My Maps)
+          </Link>
+        </div>
+        <p className="text-cream/35 text-xs text-center mt-3 max-w-2xl mx-auto leading-relaxed">
+          The Google Maps button opens turn-by-turn directions for the whole trip. The KML import works in Google
+          My Maps, Earth, or any GPS app — useful if you go offline.
+        </p>
+
+        {/* Day legend — full 8 days */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
           {[
-            { color: '#7eb8c4', label: 'Reykjavík base (Days 1, 5, 6, 7)' },
-            { color: '#a8d8b0', label: 'Golden Circle (Day 2)' },
-            { color: '#d4cfc4', label: 'South Coast → Vík (Day 3)' },
-            { color: '#7eb8c4', label: 'Glaciers → Höfn (Day 4)' },
+            { color: '#7eb8c4', label: 'Day 1 · Sun · Reykjavík (B2)' },
+            { color: '#a8d8b0', label: 'Day 2 · Mon · Golden Circle + Hvammsvík' },
+            { color: '#d4cfc4', label: 'Day 3 · Tue · Þórsmörk OR Reykjanes' },
+            { color: '#7eb8c4', label: 'Day 4 · Wed · South Coast → Vík (sleep)' },
+            { color: '#a8d8b0', label: 'Day 5 · Thu · Fjaðrárgljúfur → Reykjavík' },
+            { color: '#d4cfc4', label: 'Day 6 · Fri · Snæfellsnes day trip' },
+            { color: '#7eb8c4', label: 'Day 7 · Sat · Reykjavík + Sky Lagoon + farewell' },
+            { color: '#3d3d3d', label: 'Day 8 · Sun · KEF departure' },
           ].map(l => (
-            <div key={l.label} className="flex items-center gap-2 text-sm text-cream/50">
-              <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: l.color }} />
+            <div key={l.label} className="flex items-center gap-2 text-sm text-cream/55">
+              <div className="w-3 h-3 rounded-full shrink-0 border border-stone/40" style={{ backgroundColor: l.color }} />
               {l.label}
             </div>
           ))}

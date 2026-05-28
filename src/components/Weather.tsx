@@ -77,12 +77,16 @@ export default function Weather() {
       <div className="grid grid-cols-7 gap-1.5 md:gap-2">
         {forecast.map(day => {
           const { label, emoji } = weatherDescription(day.weathercode)
-          const d = new Date(day.date)
+          const d = new Date(day.date + 'T00:00:00')
           const dayName = d.toLocaleDateString('en', { weekday: 'short' })
+          const dayNum = d.getDate()
+          const monthShort = d.toLocaleDateString('en', { month: 'short' })
 
           return (
             <div key={day.date} className="bg-charcoal/50 rounded-lg p-2 md:p-3 text-center">
-              <div className="section-label text-xs md:text-xs">{dayName}</div>
+              <div className="section-label text-xs">{dayName}</div>
+              <div className="font-display text-cream text-xl md:text-2xl leading-none mt-1">{dayNum}</div>
+              <div className="text-cream/45 text-[10px] uppercase tracking-widest font-body">{monthShort}</div>
               <div className="text-xl my-2" title={label}>{emoji}</div>
               <div className="text-cream text-xs font-medium">{day.maxTemp}°</div>
               <div className="text-cream/40 text-xs">{day.minTemp}°</div>

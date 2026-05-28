@@ -2,10 +2,11 @@ import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './pages/Home'
 import Itinerary from './pages/Itinerary'
+import Simple from './pages/Simple'
 import Crew from './pages/Crew'
-import Polls from './pages/Polls'
 import Practical from './pages/Practical'
 import Playlist from './pages/Playlist'
+import MapPage from './pages/MapPage'
 
 export default function App() {
   return (
@@ -14,10 +15,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/itinerary" element={<Itinerary />} />
+        <Route path="/simple" element={<Simple />} />
         <Route path="/crew" element={<Crew />} />
-        <Route path="/polls" element={<Polls />} />
         <Route path="/practical" element={<Practical />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="/map" element={<MapPage />} />
       </Routes>
     </div>
   )
